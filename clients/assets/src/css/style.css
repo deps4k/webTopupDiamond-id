@@ -1,0 +1,329 @@
+/* Variabel CSS untuk tema terang */
+:root {
+  --primary-color: #4f46e5;
+  --primary-dark: #4338ca;
+  --secondary-color: #ef4444;
+  --text-color: #1f2937;
+  --text-light: #6b7280;
+  --card-bg: #ffffff;
+  --header-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Variabel CSS untuk tema gelap */
+.dark-mode {
+  --primary-color: #6a8aff;
+  --primary-dark: #5a78f0;
+  --secondary-color: #8c68cd;
+  --text-color: #f0f0f0;
+  --text-light: #b0b0b0;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --header-bg: rgba(30, 30, 30, 0.98);
+  --border-color: #374151;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Base styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Brand logo */
+.brand-logo {
+  background: var(--primary-color);
+  border-radius: 7px;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Game card */
+.game-card {
+  background-color: var(--card-bg);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.game-card.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Diamond card */
+.diamond-card {
+  position: relative;
+  background-color: var(--card-bg);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.diamond-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.diamond-card.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Promo badge */
+.promo-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+/* Payment method */
+.payment-method {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.payment-method.selected {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Steps */
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step:not(:last-child):after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 60%;
+  width: 80%;
+  height: 2px;
+  background-color: var(--border-color);
+  z-index: 0;
+}
+
+.step.completed:not(:last-child):after {
+  background-color: var(--primary-color);
+}
+
+.step.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.step.completed {
+  background-color: #10b981;
+  color: white;
+}
+
+/* Dynamic sections */
+.dynamic-section {
+  display: none;
+}
+
+.dynamic-section.visible {
+  display: block;
+}
+
+/* Pulse animation */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+  }
+}
+
+/* Game ID info */
+.game-id-info {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+}
+
+/* Toggle switch */
+.theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.theme-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.theme-slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .theme-slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .theme-slider:before {
+  transform: translateX(30px);
+}
+
+.theme-slider i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.theme-slider .fa-sun {
+  left: 8px;
+  color: #f59e0b;
+}
+
+.theme-slider .fa-moon {
+  right: 8px;
+  color: #fbbf24;
+}
+
+/* Header */
+header {
+  background-color: var(--header-bg);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Utility classes */
+.bg-white {
+  background-color: var(--card-bg) !important;
+}
+
+.text-gray-900 {
+  color: var(--text-color) !important;
+}
+
+.text-gray-700 {
+  color: var(--text-color) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-light) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--bg-color) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--border-color) !important;
+}
+
+.border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+.bg-gray-200 {
+  background-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.bg-gray-200:hover {
+  background-color: var(--text-light) !important;
+}
+
+.bg-gray-900 {
+  background-color: var(--card-bg) !important;
+}
+
+.bg-gray-800 {
+  background-color: var(--bg-color) !important;
+}
+
+.border-gray-800 {
+  border-color: var(--border-color) !important;
+}
+
+.shadow-md {
+  box-shadow: var(--shadow) !important;
+}

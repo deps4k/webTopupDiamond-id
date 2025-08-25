@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DepsStore - Top Up Diamond Game Terpercaya</title>
+  <meta name="description" content="Top up diamond game favoritmu dengan cepat dan aman di DepsStore. Nikmati promo cashback hingga 20%!">
+  <meta property="og:title" content="DepsStore - Top Up Diamond Game">
+  <meta property="og:description" content="Platform top up game terpercaya dengan proses cepat dan aman.">
+  <meta property="og:type" content="website">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script>
+    // Load Components
+function loadComponent(id, file) {
+  fetch(file)
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById(id).innerHTML = data;
+      if (id === 'footer') {
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      }
+      if (id === 'header') {
+        initHeader();
+      }
+      if (id === 'sidebar') {
+        initSidebar();
+      }
+    })
+    .catch(error => console.error(`Error loading ${id}:`, error));
+}
+
+// Initialize components on page load
+document.addEventListener('DOMContentLoaded', () => {
+  loadComponent('header', 'clients/components/header.html');
+  loadComponent('footer', 'clients/components/footer.html');
+  loadComponent('sidebar', 'clients/partials/sidebar.html');
+});
+
+// Initialize header functionality
+function initHeader() {
+  const mobileMenuButton = document.getElementById('mobileMenuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    const isExpanded = mobileMenu.classList.toggle('active');
+    mobileMenuButton.setAttribute('aria-expanded', isExpanded);
+    mobileMenuButton.querySelector('i').className = isExpanded ? 'fas fa-times' : 'fas fa-bars';
+  });
+}
+
+// Initialize sidebar functionality
+function initSidebar() {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
+  const sidebarClose = document.getElementById('sidebarClose');
+  
+  sidebarToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+  });
+  
+  sidebarClose.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+  });
+}
+
+// Game Selection
+let selectedGame = null;
+let selectedDiamond = { amount: 0, price: 0 };
+let selectedPayment = null;
+
+function selectGame(card, gameName) {
+  document.querySelectorAll('.game-card').forEach(c => c.classList.remove('ring-2', 'ring-indigo-600'));
+  card.classList.add('ring-2', 'ring-indigo-600');
+  selectedGame = gameName;
+  document.getElementById('selected-game').value = gameName;
+  updateTopupButton();
+}
+
+function selectDiamond(card, amount, price) {
+  document.querySelectorAll('.diamond-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedDiamond = { amount, price };
+  document.getElementById('selected-diamond').value = `${amount} Diamond`;
+  document.getElementById('selected-price').value = `Rp ${price.toLocaleString('id-ID')}`;
+  document.getElementById('total-price').value = `Rp ${price.toLocaleString('id-ID')}`;
+  updateTopupButton();
+}
+
+function selectPayment(card, method) {
+  document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedPayment = method;
+  document.getElementById('selected-payment').value = method;
+  updateTopupButton();
+}
+
+function updateTopupButton() {
+  const btnTopup = document.getElementById('btn-topup');
+  if (selectedGame && selectedDiamond.amount > 0 && selectedPayment) {
+    btnTopup.disabled = false;
+    btnTopup.classList.add('pulse');
+  } else {
+    btnTopup.disabled = true;
+    btnTopup.classList.remove('pulse');
+  }
+}
+
+// Top-up button event listener
+document.addEventListener('click', (event) => {
+  if (event.target.id === 'btn-topup') {
+    const gameId = document.getElementById('game-id').value.trim();
+    const nickname = document.getElementById('game-nickname').value.trim();
+    const server = document.getElementById('game-server').value.trim();
+    
+    if (!gameId || !nickname || !server) {
+      alert('Harap lengkapi data akun game!');
+      return;
+    }
+    
+    if (!selectedGame || selectedDiamond.amount === 0 || !selectedPayment) {
+      alert('Harap pilih game, jumlah diamond, dan metode pembayaran!');
+      return;
+    }
+    
+    alert(`Top-up berhasil!\n\nGame: ${selectedGame}\nID: ${gameId}\nNickname: ${nickname}\nServer: ${server}\nDiamond: ${selectedDiamond.amount}\nTotal: Rp ${selectedDiamond.price.toLocaleString('id-ID')}\nMetode: ${selectedPayment}\n\nDiamond akan masuk dalam 5 menit. Terima kasih!`);
+    
+    // Reset form
+    document.querySelectorAll('.game-card').forEach(card => card.classList.remove('ring-2', 'ring-indigo-600'));
+    document.querySelectorAll('.diamond-card').forEach(card => card.classList.remove('selected'));
+    document.querySelectorAll('.payment-method').forEach(method => method.classList.remove('selected'));
+    
+    document.getElementById('selected-game').value = '- Pilih Game -';
+    document.getElementById('selected-diamond').value = '0 Diamond';
+    document.getElementById('selected-price').value = 'Rp 0';
+    document.getElementById('selected-payment').value = '- Pilih Metode -';
+    document.getElementById('total-price').value = 'Rp 0';
+    
+    document.getElementById('game-id').value = '';
+    document.getElementById('game-nickname').value = '';
+    document.getElementById('game-server').value = '';
+    
+    selectedGame = null;
+    selectedDiamond = { amount: 0, price: 0 };
+    selectedPayment = null;
+    
+    updateTopupButton();
+    document.getElementById('sidebar').classList.remove('active');
+  }
+});
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .mobile-menu, .sidebar {
+      display: none;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu.active, .sidebar.active {
+      display: block;
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .diamond-card, .payment-method {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .diamond-card:hover, .payment-method:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
+    }
+    
+    .diamond-card.selected, .payment-method.selected {
+      border: 2px solid #4f46e5;
+      background-color: rgba(79, 70, 229, 0.05);
+    }
+    
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .section-title {
+      position: relative;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, #4f46e5, #6366f1);
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-poppins">
+  <!-- Header Placeholder -->
+  <div id="header"></div>
+
+  <!-- Sidebar Placeholder -->
+  <aside id="sidebar"></aside>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Promo Banner -->
+    <div class="max-w-7xl mx-auto px-4 mb-14 mt-8">
+      <div class="bg-gradient-to-r from-indigo-600 to-indigo-500 rounded-2xl p-6 shadow-lg">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="text-white mb-4 md:mb-0">
+            <h3 class="text-xl font-bold mb-1">🎉 Promo Spesial Akhir Tahun!</h3>
+            <p class="max-w-md">Dapatkan cashback hingga 20% untuk semua top up game. Berlaku hingga 31 Desember.</p>
+          </div>
+          <button class="px-5 py-2.5 bg-white text-indigo-600 font-medium rounded-full shadow hover:bg-gray-100 transition flex items-center pulse">
+            <i class="fas fa-gift mr-2"></i> Klaim Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Top Up Diamond Game</h2>
+    
+    <!-- Diamond Packages -->
+    <div class="mt-8">
+      <h2 class="section-title text-2xl font-bold text-gray-900">Pilih Jumlah Diamond</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="diamond-card text-center bg-white p-4 rounded-lg shadow-md" onclick="selectDiamond(this, 100, 15000)">
+          <h3 class="font-semibold text-gray-900">100 Diamond</h3>
+          <p class="text-gray-600">Rp 15.000</p>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+        <div class="diamond-card text-center bg-white p-4 rounded-lg shadow-md" onclick="selectDiamond(this, 310, 45000)">
+          <h3 class="font-semibold text-gray-900">310 Diamond</h3>
+          <p class="text-gray-600">Rp 45.000</p>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+        <div class="diamond-card text-center bg-white p-4 rounded-lg shadow-md" onclick="selectDiamond(this, 520, 75000)">
+          <h3 class="font-semibold text-gray-900">520 Diamond</h3>
+          <p class="text-gray-600">Rp 75.000</p>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+        <div class="diamond-card text-center bg-white p-4 rounded-lg shadow-md" onclick="selectDiamond(this, 1060, 150000)">
+          <h3 class="font-semibold text-gray-900">1060 Diamond</h3>
+          <p class="text-gray-600">Rp 150.000</p>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Methods -->
+    <div class="mt-8">
+      <h2 class="section-title text-2xl font-bold text-gray-900">Metode Pembayaran</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="payment-method text-center bg-white p-4 rounded-lg shadow-md" onclick="selectPayment(this, 'Gopay')">
+          <i class="fas fa-wallet text-2xl text-indigo-600 mb-2"></i>
+          <h3 class="font-semibold text-gray-900">Gopay</h3>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+        <div class="payment-method text-center bg-white p-4 rounded-lg shadow-md" onclick="selectPayment(this, 'OVO')">
+          <i class="fas fa-mobile-alt text-2xl text-indigo-600 mb-2"></i>
+          <h3 class="font-semibold text-gray-900">OVO</h3>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+        <div class="payment-method text-center bg-white p-4 rounded-lg shadow-md" onclick="selectPayment(this, 'Bank Transfer')">
+          <i class="fas fa-university text-2xl text-indigo-600 mb-2"></i>
+          <h3 class="font-semibold text-gray-900">Bank Transfer</h3>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+        <div class="payment-method text-center bg-white p-4 rounded-lg shadow-md" onclick="selectPayment(this, 'QRIS')">
+          <i class="fas fa-qrcode text-2xl text-indigo-600 mb-2"></i>
+          <h3 class="font-semibold text-gray-900">QRIS</h3>
+          <button class="mt-2 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700">Pilih</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer"></div>
+
+  <!-- JavaScript -->
+
+</body>
+</html>

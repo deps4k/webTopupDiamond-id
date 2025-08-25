@@ -1,0 +1,501 @@
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Pembelian - DepsStore</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .brand-logo {
+      background: #4f46e5;
+      border-radius: 7px;
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .history-table th, .history-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .history-table th {
+      background-color: #f9fafb;
+      font-weight: 600;
+    }
+    .history-table tr:hover {
+      background-color: #f3f4f6;
+    }
+    .status-completed {
+      color: #10b981;
+      font-weight: 600;
+    }
+    .status-pending {
+      color: #f59e0b;
+      font-weight: 600;
+    }
+    .status-failed {
+      color: #ef4444;
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .history-table thead {
+        display: none;
+      }
+      .history-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+      }
+      .history-table td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem 1rem;
+        position: relative;
+        padding-left: 50%;
+      }
+      .history-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        width: 45%;
+        padding-right: 1rem;
+        text-align: left;
+        font-weight: 600;
+      }
+      
+      /* Fix untuk scroll horizontal pada tabel di mobile */
+      .history-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
+    /* Styling untuk modal dengan konten panjang */
+    .modal-content {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    
+    /* Menghilangkan scroll horizontal yang tidak diinginkan */
+    .main-container {
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="brand-logo">
+          <img src="clients/assets/src/img/brand.png" alt="brand" class="h-10 w-10 object-contain">
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900">
+          Deps<span class="text-indigo-600">Store</span>
+        </h1>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium">
+          <i class="fas fa-tachometer-alt"></i> Beranda
+        </a>
+        <button onclick="window.location.href='index.html'" 
+          class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium">
+          <i class="fas fa-arrow-left mr-2"></i> Kembali
+        </button>
+      </nav>
+
+   <!-- Mobile Menu Button -->
+      <button id="mobileMenuButton" class="md:hidden text-gray-700" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-8 main-container">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-gray-900">Riwayat Pembelian</h2>
+      <div class="flex gap-4">
+        <button id="refresh-history" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+          <i class="fas fa-sync-alt mr-2"></i> Refresh
+        </button>
+        <button onclick="window.location.href='index.html'" 
+          class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+          <i class="fas fa-arrow-left mr-2"></i> Kembali
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="bg-white rounded-xl p-4 shadow-md mb-6">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="w-full md:w-1/3">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Filter Tanggal</label>
+          <select id="date-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            <option value="all">Semua Tanggal</option>
+            <option value="today">Hari Ini</option>
+            <option value="week">Minggu Ini</option>
+            <option value="month">Bulan Ini</option>
+          </select>
+        </div>
+        <div class="w-full md:w-1/3">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Filter Status</label>
+          <select id="status-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            <option value="all">Semua Status</option>
+            <option value="completed">Berhasil</option>
+            <option value="pending">Pending</option>
+            <option value="failed">Gagal</option>
+          </select>
+        </div>
+        <div class="w-full md:w-1/3">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Cari Transaksi</label>
+          <div class="relative">
+            <input type="text" id="search-history" placeholder="Cari ID atau nama game..." 
+              class="w-full px-3 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- History Content -->
+    <div class="bg-white rounded-xl p-6 shadow-md">
+      <div id="history-empty" class="text-center py-12 hidden">
+        <i class="fas fa-history text-5xl text-gray-300 mb-4"></i>
+        <h3 class="text-xl font-semibold text-gray-700 mb-2">Belum Ada Riwayat Pembelian</h3>
+        <p class="text-gray-500 mb-6">Riwayat pembelian Anda akan muncul di sini setelah melakukan transaksi.</p>
+        <button onclick="window.location.href='index.html'" 
+          class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+          <i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang
+        </button>
+      </div>
+      
+      <div id="history-content" class="overflow-x-auto history-table-container">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>ID Transaksi</th>
+              <th>Tanggal</th>
+              <th>Game</th>
+              <th>Jumlah</th>
+              <th>Total Harga</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <!-- Riwayat akan diisi secara dinamis -->
+          </tbody>
+        </table>
+      </div>
+      
+      <div id="history-pagination" class="mt-6 flex justify-between items-center hidden">
+        <div class="text-sm text-gray-600">
+          Menampilkan <span id="history-count">0</span> dari <span id="history-total">0</span> transaksi
+        </div>
+        <div class="flex gap-2">
+          <button id="history-prev" class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <span id="history-page-info" class="px-3 py-1 bg-indigo-600 text-white rounded-md">1</span>
+          <button id="history-next" class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-6 m-4 max-w-md w-full max-h-[90vh] flex flex-col">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-900">Detail Transaksi</h3>
+        <button id="detail-close" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="bg-gray-50 rounded-lg p-4 mb-4 modal-content">
+        <div id="detail-content" class="text-sm space-y-2">
+          <!-- Detail transaksi akan diisi di sini -->
+        </div>
+      </div>
+      
+      <button id="detail-ok" class="w-full py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition mt-auto">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Data riwayat transaksi
+    let purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+    let currentPage = 1;
+    const itemsPerPage = 5;
+    let filteredHistory = [];
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPurchaseHistory();
+      setupEventListeners();
+      
+      // Mencegah scroll latar belakang ketika modal terbuka
+      setupModalScrollPrevention();
+    });
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Refresh button
+      document.getElementById('refresh-history').addEventListener('click', loadPurchaseHistory);
+      
+      // Filter events
+      document.getElementById('date-filter').addEventListener('change', applyFilters);
+      document.getElementById('status-filter').addEventListener('change', applyFilters);
+      document.getElementById('search-history').addEventListener('input', applyFilters);
+      
+      // Pagination
+      document.getElementById('history-prev').addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderHistoryTable();
+          scrollToHistoryTop();
+        }
+      });
+      
+      document.getElementById('history-next').addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredHistory.length / itemsPerPage);
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderHistoryTable();
+          scrollToHistoryTop();
+        }
+      });
+      
+      // Modal events
+      document.getElementById('detail-close').addEventListener('click', closeDetailModal);
+      document.getElementById('detail-ok').addEventListener('click', closeDetailModal);
+      
+      // Mencegah modal tertutup saat mengklik konten
+      document.getElementById('detail-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'detail-modal') {
+          closeDetailModal();
+        }
+      });
+    }
+    
+    // Setup modal scroll prevention
+    function setupModalScrollPrevention() {
+      const modal = document.getElementById('detail-modal');
+      
+      modal.addEventListener('wheel', (e) => {
+        const modalContent = modal.querySelector('.modal-content');
+        const isScrollable = modalContent.scrollHeight > modalContent.clientHeight;
+        const isAtTop = modalContent.scrollTop === 0;
+        const isAtBottom = modalContent.scrollHeight - modalContent.scrollTop === modalContent.clientHeight;
+        
+        if (!isScrollable || (e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    }
+
+    // Load purchase history
+    function loadPurchaseHistory() {
+      purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+      applyFilters();
+    }
+
+    // Apply filters
+    function applyFilters() {
+      const dateFilter = document.getElementById('date-filter').value;
+      const statusFilter = document.getElementById('status-filter').value;
+      const searchTerm = document.getElementById('search-history').value.toLowerCase();
+      
+      filteredHistory = purchaseHistory.filter(transaction => {
+        // Date filter
+        if (dateFilter !== 'all') {
+          const transactionDate = new Date(transaction.timestamp);
+          const today = new Date();
+          
+          if (dateFilter === 'today') {
+            if (transactionDate.toDateString() !== today.toDateString()) return false;
+          } else if (dateFilter === 'week') {
+            const weekStart = new Date(today);
+            weekStart.setDate(today.getDate() - today.getDay());
+            weekStart.setHours(0, 0, 0, 0);
+            
+            if (transactionDate < weekStart) return false;
+          } else if (dateFilter === 'month') {
+            if (transactionDate.getMonth() !== today.getMonth() || 
+                transactionDate.getFullYear() !== today.getFullYear()) return false;
+          }
+        }
+        
+        // Status filter
+        if (statusFilter !== 'all' && transaction.status !== statusFilter) return false;
+        
+        // Search filter
+        if (searchTerm && 
+            !transaction.id.toLowerCase().includes(searchTerm) && 
+            !transaction.game.toLowerCase().includes(searchTerm)) return false;
+        
+        return true;
+      });
+      
+      // Sort by date (newest first)
+      filteredHistory.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      
+      currentPage = 1;
+      renderHistoryTable();
+    }
+
+    // Render history table
+    function renderHistoryTable() {
+      const historyBody = document.getElementById('history-body');
+      const historyEmpty = document.getElementById('history-empty');
+      const historyContent = document.getElementById('history-content');
+      const historyPagination = document.getElementById('history-pagination');
+      const historyCount = document.getElementById('history-count');
+      const historyTotal = document.getElementById('history-total');
+      const historyPageInfo = document.getElementById('history-page-info');
+      
+      // Clear existing content
+      historyBody.innerHTML = '';
+      
+      if (filteredHistory.length === 0) {
+        historyEmpty.classList.remove('hidden');
+        historyContent.classList.add('hidden');
+        historyPagination.classList.add('hidden');
+        return;
+      }
+      
+      historyEmpty.classList.add('hidden');
+      historyContent.classList.remove('hidden');
+      historyPagination.classList.remove('hidden');
+      
+      // Calculate pagination
+      const totalPages = Math.ceil(filteredHistory.length / itemsPerPage);
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, filteredHistory.length);
+      const currentItems = filteredHistory.slice(startIndex, endIndex);
+      
+      // Update pagination info
+      historyCount.textContent = currentItems.length;
+      historyTotal.textContent = filteredHistory.length;
+      historyPageInfo.textContent = currentPage;
+      
+      // Update pagination buttons
+      updatePaginationButtons(totalPages);
+      
+      // Populate history table
+      currentItems.forEach(transaction => {
+        const row = document.createElement('tr');
+        
+        // Determine status class
+        let statusClass = 'status-completed';
+        let statusText = 'Berhasil';
+        
+        if (transaction.status === 'pending') {
+          statusClass = 'status-pending';
+          statusText = 'Pending';
+        } else if (transaction.status === 'failed') {
+          statusClass = 'status-failed';
+          statusText = 'Gagal';
+        }
+        
+        row.innerHTML = `
+          <td data-label="ID Transaksi">${transaction.id}</td>
+          <td data-label="Tanggal">${new Date(transaction.timestamp).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+          <td data-label="Game">${transaction.game}</td>
+          <td data-label="Jumlah">${transaction.amount.toLocaleString('id-ID')} ${transaction.gameCode === 'mc' ? 'Koin' : 'Diamond'}</td>
+          <td data-label="Total Harga">${transaction.totalPrice}</td>
+          <td data-label="Status"><span class="${statusClass}">${statusText}</span></td>
+          <td data-label="Aksi">
+            <button class="text-indigo-600 hover:text-indigo-800" onclick="showTransactionDetail('${transaction.id}')">
+              <i class="fas fa-eye"></i> Detail
+            </button>
+          </td>
+        `;
+        
+        historyBody.appendChild(row);
+      });
+    }
+    
+    // Scroll to top of history table
+    function scrollToHistoryTop() {
+      const historySection = document.getElementById('history-content');
+      if (historySection) {
+        historySection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    
+    // Update pagination buttons
+    function updatePaginationButtons(totalPages) {
+      const prevButton = document.getElementById('history-prev');
+      const nextButton = document.getElementById('history-next');
+      
+      prevButton.disabled = currentPage === 1;
+      nextButton.disabled = currentPage === totalPages;
+      
+      prevButton.classList.toggle('opacity-50', currentPage === 1);
+      nextButton.classList.toggle('opacity-50', currentPage === totalPages);
+      prevButton.classList.toggle('cursor-not-allowed', currentPage === 1);
+      nextButton.classList.toggle('cursor-not-allowed', currentPage === totalPages);
+    }
+    
+    // Show transaction detail
+    function showTransactionDetail(transactionId) {
+      const transaction = purchaseHistory.find(t => t.id === transactionId);
+      
+      if (transaction) {
+        const detailContent = document.getElementById('detail-content');
+        const modal = document.getElementById('detail-modal');
+        
+        detailContent.innerHTML = `
+          <p><strong>ID Transaksi:</strong> ${transaction.id}</p>
+          <p><strong>Waktu:</strong> ${new Date(transaction.timestamp).toLocaleString('id-ID')}</p>
+          <p><strong>Game:</strong> ${transaction.game}</p>
+          <p><strong>ID Pemain:</strong> ${transaction.playerId}</p>
+          <p><strong>Nickname:</strong> ${transaction.nickname}</p>
+          <p><strong>Server:</strong> ${transaction.server}</p>
+          <p><strong>Jumlah ${transaction.gameCode === 'mc' ? 'Koin' : 'Diamond'}:</strong> ${transaction.amount.toLocaleString('id-ID')}</p>
+          <p><strong>Harga Awal:</strong> ${transaction.originalPrice}</p>
+          ${transaction.cashback !== 'Rp 0' ? `<p><strong>Cashback:</strong> ${transaction.cashback}</p>` : ''}
+          <p><strong>Total Harga:</strong> ${transaction.totalPrice}</p>
+          <p><strong>Metode Pembayaran:</strong> ${transaction.paymentMethod}</p>
+          <p><strong>Status:</strong> <span class="${transaction.status === 'completed' ? 'status-completed' : transaction.status === 'pending' ? 'status-pending' : 'status-failed'}">${
+            transaction.status === 'completed' ? 'Berhasil' : transaction.status === 'pending' ? 'Pending' : 'Gagal'
+          }</span></p>
+        `;
+        
+        // Mencegah scroll body ketika modal terbuka
+        document.body.style.overflow = 'hidden';
+        modal.classList.remove('hidden');
+      }
+    }
+    
+    // Close detail modal
+    function closeDetailModal() {
+      const modal = document.getElementById('detail-modal');
+      modal.classList.add('hidden');
+      
+      // Mengembalikan scroll body
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+</body>
+</html>

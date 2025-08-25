@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - DepsStore</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .auth-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+    }
+    
+    .profile-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 500px;
+      overflow: hidden;
+      display: none;
+    }
+    
+    .auth-header {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .profile-header {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .auth-tab {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .auth-tab.active {
+      color: #4f46e5;
+      border-bottom: 2px solid #4f46e5;
+    }
+    
+    .auth-form {
+      padding: 25px;
+    }
+    
+    .profile-content {
+      padding: 25px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #374151;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-secondary {
+      width: 100%;
+      padding: 12px;
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #6b7280;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .divider::before {
+      margin-right: 10px;
+    }
+    
+    .divider::after {
+      margin-left: 10px;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .social-btn.google {
+      background: #DB4437;
+    }
+    
+    .social-btn.facebook {
+      background: #4267B2;
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .auth-footer {
+      text-align: center;
+      padding: 15px;
+      background: #f9fafb;
+      color: #6b7280;
+    }
+    
+    .auth-footer a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 42px;
+      cursor: pointer;
+      color: #6b7280;
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #c7d2fe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 32px;
+      color: #4f46e5;
+      font-weight: bold;
+    }
+    
+    .profile-info {
+      margin-bottom: 20px;
+    }
+    
+    .profile-info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .profile-info-item:last-child {
+      border-bottom: none;
+    }
+    
+    .info-label {
+      color: #6b7280;
+      font-weight: 500;
+    }
+    
+    .info-value {
+      color: #374151;
+      font-weight: 600;
+    }
+    
+    .back-button {
+      position: absolute;
+      left: 15px;
+      top: 25px;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    .success-message {
+      background-color: #d1fae5;
+      color: #065f46;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container" id="auth-container">
+    <div class="auth-header">
+      <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+        <div style="width: 50px; height: 50px; background: #4f46e5; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+          <i class="fas fa-gamepad" style="color: white; font-size: 24px;"></i>
+        </div>
+        <h1 style="font-size: 24px; font-weight: 700;">Deps<span style="color: #c7d2fe">Store</span></h1>
+      </div>
+      <p style="margin: 0; opacity: 0.9;">Top up game favoritmu dengan mudah dan aman</p>
+    </div>
+    
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="login-tab">Login</div>
+      <div class="auth-tab" id="register-tab">Daftar</div>
+    </div>
+    
+    <div class="auth-form">
+      <!-- Success Message -->
+      <div class="success-message" id="success-message">
+        <i class="fas fa-check-circle"></i> Pendaftaran berhasil! Silakan login.
+      </div>
+      
+      <!-- Login Form -->
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="nama@contoh.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <div class="password-container">
+            <input type="password" id="login-password" placeholder="Masukkan password" required>
+            <span class="password-toggle" id="login-password-toggle">
+              <i class="far fa-eye"></i>
+            </span>
+          </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <label style="display: flex; align-items: center; cursor: pointer;">
+            <input type="checkbox" style="margin-right: 8px;">
+            <span>Ingat saya</span>
+          </label>
+          <a href="#" style="color: #4f46e5; text-decoration: none; font-size: 14px;">Lupa password?</a>
+        </div>
+        
+        <button type="submit" class="btn-primary">Masuk</button>
+      </form>
+      
+      <!-- Register Form (Initially Hidden) -->
+      <form id="register-form" style="display: none;">
+        <div class="form-group">
+          <label for="register-name">Nama Lengkap</label>
+          <input type="text" id="register-name" placeholder="Nama lengkap" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-email">Email</label>
+          <input type="email" id="register-email" placeholder="nama@contoh.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-phone">Nomor Telepon</label>
+          <input type="tel" id="register-phone" placeholder="08xxxxxxxxxx" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <div class="password-container">
+            <input type="password" id="register-password" placeholder="Buat password" required>
+            <span class="password-toggle" id="register-password-toggle">
+              <i class="far fa-eye"></i>
+            </span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-confirm-password">Konfirmasi Password</label>
+          <div class="password-container">
+            <input type="password" id="register-confirm-password" placeholder="Konfirmasi password" required>
+            <span class="password-toggle" id="register-confirm-password-toggle">
+              <i class="far fa-eye"></i>
+            </span>
+          </div>
+        </div>
+        
+        <label style="display: flex; align-items: flex-start; margin-bottom: 20px; cursor: pointer;">
+          <input type="checkbox" style="margin-right: 8px; margin-top: 3px;">
+          <span>Saya menyetujui <a href="#" style="color: #4f46e5;">Syarat & Ketentuan</a> dan <a href="#" style="color: #4f46e5;">Kebijakan Privasi</a></span>
+        </label>
+        
+        <button type="submit" class="btn-primary">Daftar</button>
+      </form>
+      
+      <div class="divider">atau</div>
+      
+      <div class="social-login">
+        <div class="social-btn google">
+          <i class="fab fa-google"></i>
+        </div>
+        <div class="social-btn facebook">
+          <i class="fab fa-facebook-f"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="auth-footer">
+      <p id="auth-footer-text">Belum punya akun? <a href="#" id="switch-to-register">Daftar sekarang</a></p>
+    </div>
+  </div>
+
+  <!-- Profile Container (Initially Hidden) -->
+  <div class="profile-container" id="profile-container">
+    <div class="profile-header">
+      <div class="back-button" id="back-button">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div class="profile-avatar" id="profile-avatar">
+        <span id="avatar-text">U</span>
+      </div>
+      <h2 id="profile-name" style="margin: 0; font-size: 22px; font-weight: 700;">Nama Pengguna</h2>
+      <p id="profile-email" style="margin: 5px 0 0; opacity: 0.9;">email@contoh.com</p>
+    </div>
+    
+    <div class="profile-content">
+      <div class="profile-info">
+        <div class="profile-info-item">
+          <span class="info-label">Nama Lengkap</span>
+          <span class="info-value" id="profile-fullname">Nama Pengguna</span>
+        </div>
+        <div class="profile-info-item">
+          <span class="info-label">Email</span>
+          <span class="info-value" id="profile-email-value">email@contoh.com</span>
+        </div>
+        <div class="profile-info-item">
+          <span class="info-label">Nomor Telepon</span>
+          <span class="info-value" id="profile-phone">08xxxxxxxxxx</span>
+        </div>
+        <div class="profile-info-item">
+          <span class="info-label">Member Sejak</span>
+          <span class="info-value" id="profile-joined">1 Januari 2023</span>
+        </div>
+      </div>
+      
+      <button class="btn-primary" id="edit-profile-btn">Edit Profil</button>
+      <button class="btn-secondary" id="logout-btn">Keluar</button>
+    </div>
+  </div>
+
+  <script>
+    // Simpan data user (dalam aplikasi nyata, ini akan disimpan di database)
+    let currentUser = null;
+    let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching functionality
+      const loginTab = document.getElementById('login-tab');
+      const registerTab = document.getElementById('register-tab');
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const authFooterText = document.getElementById('auth-footer-text');
+      const authContainer = document.getElementById('auth-container');
+      const profileContainer = document.getElementById('profile-container');
+      const backButton = document.getElementById('back-button');
+      const logoutBtn = document.getElementById('logout-btn');
+      const successMessage = document.getElementById('success-message');
+      
+      // Switch to register
+      registerTab.addEventListener('click', function() {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        loginTab.classList.remove('active');
+        registerTab.classList.add('active');
+        authFooterText.innerHTML = 'Sudah punya akun? <a href="#" id="switch-to-login">Masuk</a>';
+        successMessage.style.display = 'none';
+        attachSwitchToLoginListener();
+      });
+      
+      // Switch to login
+      function switchToLogin() {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        registerTab.classList.remove('active');
+        loginTab.classList.add('active');
+        authFooterText.innerHTML = 'Belum punya akun? <a href="#" id="switch-to-register">Daftar sekarang</a>';
+        attachSwitchToRegisterListener();
+      }
+      
+      loginTab.addEventListener('click', function() {
+        switchToLogin();
+        successMessage.style.display = 'none';
+      });
+      
+      // Footer link listener
+      function attachSwitchToRegisterListener() {
+        const switchToRegisterLink = document.getElementById('switch-to-register');
+        if (switchToRegisterLink) {
+          switchToRegisterLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerTab.click();
+          });
+        }
+      }
+      
+      function attachSwitchToLoginListener() {
+        const switchToLoginLink = document.getElementById('switch-to-login');
+        if (switchToLoginLink) {
+          switchToLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchToLogin();
+          });
+        }
+      }
+      
+      // Initial setup
+      attachSwitchToRegisterListener();
+      
+      // Password toggle functionality
+      function setupPasswordToggle(toggleId, inputId) {
+        const toggle = document.getElementById(toggleId);
+        const input = document.getElementById(inputId);
+        
+        toggle.addEventListener('click', function() {
+          if (input.type === 'password') {
+            input.type = 'text';
+            toggle.innerHTML = '<i class="far fa-eye-slash"></i>';
+          } else {
+            input.type = 'password';
+            toggle.innerHTML = '<i class="far fa-eye"></i>';
+          }
+        });
+      }
+      
+      setupPasswordToggle('login-password-toggle', 'login-password');
+      setupPasswordToggle('register-password-toggle', 'register-password');
+      setupPasswordToggle('register-confirm-password-toggle', 'register-confirm-password');
+      
+      // Form submission - LOGIN
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        // Cari user yang terdaftar
+        const user = registeredUsers.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+          loginUser(user);
+        } else {
+          alert('Email atau password salah! Silakan coba lagi.');
+        }
+      });
+      
+      // Form submission - REGISTER
+      registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const phone = document.getElementById('register-phone').value;
+        const password = document.getElementById('register-password').value;
+        const confirmPassword = document.getElementById('register-confirm-password').value;
+        
+        // Validasi input
+        if (password !== confirmPassword) {
+          alert('Konfirmasi password tidak sesuai!');
+          return;
+        }
+        
+        // Cek apakah email sudah terdaftar
+        if (registeredUsers.some(user => user.email === email)) {
+          alert('Email sudah terdaftar! Silakan gunakan email lain.');
+          return;
+        }
+        
+        // Simpan data user baru
+        const newUser = {
+          name: name,
+          email: email,
+          phone: phone,
+          password: password,
+          joined: new Date().toLocaleDateString('id-ID', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+          })
+        };
+        
+        registeredUsers.push(newUser);
+        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+        
+        // Tampilkan pesan sukses
+        successMessage.style.display = 'block';
+        
+        // Reset form registrasi
+        document.getElementById('register-form').reset();
+        
+        // Beralih ke form login
+        switchToLogin();
+      });
+      
+      // Fungsi untuk login user dan menampilkan profil
+      function loginUser(userData) {
+        currentUser = userData;
+        
+        // Simpan data user ke localStorage
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        
+        // Update UI profil
+        document.getElementById('profile-name').textContent = userData.name;
+        document.getElementById('profile-email').textContent = userData.email;
+        document.getElementById('profile-fullname').textContent = userData.name;
+        document.getElementById('profile-email-value').textContent = userData.email;
+        document.getElementById('profile-phone').textContent = userData.phone;
+        document.getElementById('profile-joined').textContent = userData.joined;
+        
+        // Set avatar dengan inisial nama
+        const names = userData.name.split(' ');
+        let initials = '';
+        if (names.length > 0) {
+          initials = names[0].charAt(0).toUpperCase();
+          if (names.length > 1) {
+            initials += names[names.length - 1].charAt(0).toUpperCase();
+          }
+        }
+        document.getElementById('avatar-text').textContent = initials;
+        
+        // Sembunyikan form login, tampilkan profil
+        authContainer.style.display = 'none';
+        profileContainer.style.display = 'block';
+      }
+      
+      // Fungsi untuk logout
+      function logoutUser() {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        
+        // Sembunyikan profil, tampilkan form login
+        profileContainer.style.display = 'none';
+        authContainer.style.display = 'block';
+        
+        // Reset form login
+        document.getElementById('login-form').reset();
+      }
+      
+      // Tombol kembali ke halaman login
+      backButton.addEventListener('click', function() {
+        profileContainer.style.display = 'none';
+        authContainer.style.display = 'block';
+      });
+      
+      // Tombol logout
+      logoutBtn.addEventListener('click', logoutUser);
+      
+      // Tombol edit profil
+      document.getElementById('edit-profile-btn').addEventListener('click', function() {
+        alert('Fitur edit profil akan segera hadir!');
+      });
+      
+      // Cek apakah user sudah login sebelumnya
+      const savedUser = localStorage.getItem('currentUser');
+      if (savedUser) {
+        loginUser(JSON.parse(savedUser));
+      }
+    });
+  </script>
+</body>
+</html>

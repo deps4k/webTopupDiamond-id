@@ -1,0 +1,785 @@
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pusat Bantuan DepsStore - Panduan top up diamond, cara pembayaran, FAQ, dan kontak customer service.">
+  <meta name="keywords" content="DepsStore, top up game, bantuan, FAQ, pembayaran, diamond">
+  <title>Bantuan - DepsStore</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #f9fafb;
+      --text-color: #1f2937;
+      --primary-color: #4f46e5;
+      --secondary-color: #818cf8;
+      --border-color: #e5e7eb;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .brand-logo {
+      background: var(--primary-color);
+      border-radius: 7px;
+      padding: 4px;
+    }
+    
+    /* Dark mode styles */
+    .dark-mode {
+      --bg-color: #1f2937;
+      --text-color: #f3f4f6;
+      --primary-color: #818cf8;
+      --secondary-color: #4f46e5;
+      --border-color: #4b5563;
+    }
+    .dark-mode .bg-white {
+      background-color: #374151;
+    }
+    .dark-mode .text-gray-900 {
+      color: #f9fafb;
+    }
+    .dark-mode .text-gray-700 {
+      color: #d1d5db;
+    }
+    .dark-mode .text-gray-600 {
+      color: #9ca3af;
+    }
+    .dark-mode .bg-gray-50 {
+      background-color: #111827;
+    }
+    .dark-mode .bg-gray-100 {
+      background-color: #4b5563;
+    }
+    .dark-mode .bg-indigo-50 {
+      background-color: #4b5563;
+    }
+    .dark-mode .bg-indigo-100 {
+      background-color: #6b7280;
+    }
+    .dark-mode .bg-blue-50 {
+      background-color: #1e3a8a;
+    }
+    .dark-mode .text-blue-800 {
+      color: #93c5fd;
+    }
+    .dark-mode .text-blue-900 {
+      color: #bfdbfe;
+    }
+    .dark-mode .bg-yellow-50 {
+      background-color: #713f12;
+    }
+    .dark-mode .text-yellow-800 {
+      color: #fef08a;
+    }
+    .dark-mode .text-yellow-900 {
+      color: #facc15;
+    }
+    .dark-mode .border-gray-300 {
+      border-color: #4b5563;
+    }
+    .dark-mode .border-gray-200 {
+      border-color: #4b5563;
+    }
+    .dark-mode .shadow-md {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    }
+    .dark-mode .bg-gray-900 {
+      background-color: #111827;
+    }
+    .dark-mode .bg-gray-800 {
+      background-color: #1f2937;
+    }
+    .dark-mode .border-gray-800 {
+      border-color: #374151;
+    }
+    .dark-mode .bg-indigo-600 {
+      background-color: #6b7280;
+    }
+    .dark-mode .bg-indigo-600:hover {
+      background-color: #4b5563;
+    }
+    .dark-mode .text-white {
+      color: #e5e7eb;
+    }
+    
+    /* Toggle switch */
+    .theme-toggle {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+    .theme-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .theme-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: background-color 0.4s ease;
+      border-radius: 34px;
+    }
+    .theme-slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: transform 0.4s ease;
+      border-radius: 50%;
+    }
+    input:checked + .theme-slider {
+      background-color: var(--primary-color);
+    }
+    input:checked + .theme-slider:before {
+      transform: translateX(30px);
+    }
+    .theme-slider i {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+    }
+    .theme-slider .fa-sun {
+      left: 8px;
+      color: #f59e0b;
+    }
+    .theme-slider .fa-moon {
+      right: 8px;
+      color: #fbbf24;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .mobile-menu.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* FAQ Accordion */
+    .faq-item {
+      border-bottom: 1px solid var(--border-color);
+    }
+    .faq-question {
+      cursor: pointer;
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.2s ease;
+    }
+    .faq-question:hover {
+      background-color: rgba(79, 70, 229, 0.1);
+    }
+    .dark-mode .faq-question:hover {
+      background-color: rgba(129, 140, 248, 0.2);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-answer.active {
+      max-height: 500px;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-icon.active {
+      transform: rotate(180deg);
+    }
+    
+    /* Contact Form */
+    .contact-input {
+      transition: all 0.3s ease;
+    }
+    .contact-input:focus {
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+    .dark-mode .contact-input:focus {
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="brand-logo">
+          <img src="clients/assets/src/img/brand.png" alt="Logo DepsStore" class="h-10 w-10 object-contain" loading="lazy">
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          Deps<span class="text-indigo-600 dark:text-indigo-400">Store</span>
+        </h1>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav role="navigation" class="hidden md:flex items-center gap-8">
+        <a href="#dashboard" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium">
+          <i class="fas fa-tachometer-alt"></i> Beranda
+        </a>
+        <a href="#game-section" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium">
+          <i class="fas fa-gamepad"></i> Game
+        </a>
+        <a href="history.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium">
+          <i class="fas fa-history"></i> Riwayat
+        </a>
+        <a href="#bantuan" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium">
+          <i class="fas fa-question-circle"></i> Bantuan
+        </a>
+        
+        <!-- Theme Toggle -->
+        <div class="flex items-center gap-2">
+          <label class="theme-toggle">
+            <input type="checkbox" id="theme-toggle">
+            <span class="theme-slider">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+            </span>
+          </label>
+        </div>
+        
+        <button onclick="window.location.href='clients/accounts/index.html'" 
+          class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 font-medium">
+          <i class="fas fa-user"></i> Masuk
+        </button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center gap-4 md:hidden">
+        <!-- Theme Toggle for Mobile -->
+        <label class="theme-toggle">
+          <input type="checkbox" id="theme-toggle-mobile">
+          <span class="theme-slider">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </span>
+        </label>
+        
+        <button id="mobileMenuButton" class="text-gray-700 dark:text-gray-300" aria-label="Buka atau tutup menu mobile" aria-expanded="false">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden mobile-menu bg-white dark:bg-gray-800 px-4 pb-4">
+      <div class="flex flex-col gap-4">
+        <a href="#dashboard" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium py-2">
+          <i class="fas fa-tachometer-alt"></i> Beranda
+        </a>
+        <a href="#game-section" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium py-2">
+          <i class="fas fa-gamepad"></i> Game
+        </a>
+        <a href="history.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium py-2">
+          <i class="fas fa-history"></i> Riwayat
+        </a>
+        <a href="#bantuan" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 font-medium py-2">
+          <i class="fas fa-question-circle"></i> Bantuan
+        </a>
+        <button onclick="window.location.href='clients/accounts/index.html'" 
+          class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 font-medium">
+          <i class="fas fa-user"></i> Masuk
+        </button>
+      </div>
+    </div>
+  </header> 
+
+  <!-- Main Content -->
+  <main role="main" class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Help Center Navigation -->
+    <div class="bg-white rounded-xl p-6 shadow-md mb-8 dark:bg-gray-800">
+      <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center dark:text-gray-100">Pusat Bantuan DepsStore</h1>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <a href="#help-center" class="flex flex-col items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+          <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-2 dark:bg-indigo-500">
+            <i class="fas fa-life-ring text-white text-xl"></i>
+          </div>
+          <span class="font-medium text-gray-900 dark:text-gray-100">Pusat Bantuan</span>
+        </a>
+        
+        <a href="#payment-guide" class="flex flex-col items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+          <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-2 dark:bg-indigo-500">
+            <i class="fas fa-credit-card text-white text-xl"></i>
+          </div>
+          <span class="font-medium text-gray-900 dark:text-gray-100">Cara Pembayaran</span>
+        </a>
+        
+        <a href="#faq" class="flex flex-col items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+          <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-2 dark:bg-indigo-500">
+            <i class="fas fa-question-circle text-white text-xl"></i>
+          </div>
+          <span class="font-medium text-gray-900 dark:text-gray-100">FAQ</span>
+        </a>
+        
+        <a href="#contact" class="flex flex-col items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+          <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mb-2 dark:bg-indigo-500">
+            <i class="fas fa-envelope text-white text-xl"></i>
+          </div>
+          <span class="font-medium text-gray-900 dark:text-gray-100">Hubungi Kami</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Help Center Section -->
+    <section id="help-center" class="bg-white rounded-xl p-6 shadow-md mb-8 dark:bg-gray-800">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center dark:text-gray-100">
+        <i class="fas fa-life-ring text-indigo-600 mr-3 dark:text-indigo-400"></i> Pusat Bantuan
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg dark:bg-gray-900">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3 dark:text-gray-100">Cara Top Up Diamond</h3>
+          <p class="text-gray-600 mb-4 dark:text-gray-300">Ikuti langkah-langkah mudah untuk melakukan top up diamond di DepsStore:</p>
+          <ol class="list-decimal pl-5 space-y-2 text-gray-600 dark:text-gray-300">
+            <li>Pilih game yang ingin Anda top up</li>
+            <li>Masukkan ID game dan server</li>
+            <li>Pilih jumlah diamond yang diinginkan</li>
+            <li>Pilih metode pembayaran</li>
+            <li>Selesaikan pembayaran</li>
+            <li>Tunggu diamond masuk ke akun game Anda (maksimal 15 menit)</li>
+          </ol>
+        </div>
+        
+        <div class="bg-gray-50 p-6 rounded-lg dark:bg-gray-900">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3 dark:text-gray-100">Panduan Troubleshooting</h3>
+          <p class="text-gray-600 mb-4 dark:text-gray-300">Jika mengalami masalah, coba langkah-langkah berikut:</p>
+          <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300">
+            <li>Pastikan ID game dan server sudah benar</li>
+            <li>Periksa koneksi internet Anda</li>
+            <li>Refresh halaman jika proses terhenti</li>
+            <li>Hubungi customer service jika diamond tidak masuk dalam 30 menit</li>
+            <li>Simpan ID transaksi untuk referensi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Guide Section -->
+    <section id="payment-guide" class="bg-white rounded-xl p-6 shadow-md mb-8 dark:bg-gray-800">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center dark:text-gray-100">
+        <i class="fas fa-credit-card text-indigo-600 mr-3 dark:text-indigo-400"></i> Cara Pembayaran
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Metode Pembayaran yang Tersedia</h3>
+          <div class="space-y-4">
+            <div class="flex items-center p-4 border border-gray-200 rounded-lg dark:border-gray-600">
+              <img src="clients/assets/src/img/paymentIcon/qris.png" alt="Logo QRIS" class="h-10 w-10 object-contain mr-4" loading="lazy">
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">QRIS</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Scan QR code untuk pembayaran instant</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center p-4 border border-gray-200 rounded-lg dark:border-gray-600">
+              <img src="clients/assets/src/img/paymentIcon/gopay.png" alt="Logo Gopay" class="h-10 w-10 object-contain mr-4" loading="lazy">
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">Gopay</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Bayar menggunakan saldo Gopay</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center p-4 border border-gray-200 rounded-lg dark:border-gray-600">
+              <img src="clients/assets/src/img/paymentIcon/ovo.png" alt="Logo OVO" class="h-10 w-10 object-contain mr-4" loading="lazy">
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">OVO</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Bayar menggunakan saldo OVO</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center p-4 border border-gray-200 rounded-lg dark:border-gray-600">
+              <img src="clients/assets/src/img/paymentIcon/dana.jpeg" alt="Logo Dana" class="h-10 w-10 object-contain mr-4" loading="lazy">
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">Dana</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Bayar menggunakan saldo Dana</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Panduan Pembayaran</h3>
+          <div class="bg-blue-50 p-5 rounded-lg dark:bg-blue-900">
+            <h4 class="font-medium text-blue-900 mb-3 dark:text-blue-200">Langkah-langkah Pembayaran:</h4>
+            <ol class="list-decimal pl-5 space-y-2 text-blue-800 dark:text-blue-200">
+              <li>Pilih metode pembayaran yang diinginkan</li>
+              <li>Ikuti instruksi yang muncul di layar</li>
+              <li>Untuk e-wallet: pastikan saldo mencukupi</li>
+              <li>Untuk QRIS: scan kode yang muncul menggunakan aplikasi bank/e-wallet</li>
+              <li>Tunggu konfirmasi pembayaran</li>
+              <li>Simpan bukti transaksi</li>
+            </ol>
+          </div>
+          
+          <div class="bg-yellow-50 p-5 rounded-lg mt-4 dark:bg-yellow-900">
+            <h4 class="font-medium text-yellow-900 mb-3 dark:text-yellow-200">Perhatian:</h4>
+            <ul class="list-disc pl-5 space-y-2 text-yellow-800 dark:text-yellow-200">
+              <li>Jangan tutup halaman selama proses pembayaran</li>
+              <li>Pastikan pembayaran telah berhasil sebelum menutup halaman</li>
+              <li>Hubungi customer service jika terjadi kegagalan transaksi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="bg-white rounded-xl p-6 shadow-md mb-8 dark:bg-gray-800">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center dark:text-gray-100">
+        <i class="fas fa-question-circle text-indigo-600 mr-3 dark:text-indigo-400"></i> Pertanyaan Umum (FAQ)
+      </h2>
+      
+      <div class="space-y-4">
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') toggleFaq(this)">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">Berapa lama waktu yang dibutuhkan untuk diamond masuk ke akun game?</h3>
+            <i class="fas fa-chevron-down faq-icon text-indigo-600 dark:text-indigo-400"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-gray-600 pb-4 dark:text-gray-300">Biasanya diamond akan masuk ke akun game Anda dalam waktu 1-5 menit. Namun, dalam beberapa kasus bisa memakan waktu hingga 15 menit. Jika diamond belum masuk setelah 30 menit, silakan hubungi customer service dengan menyertakan ID transaksi.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') toggleFaq(this)">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">Apa yang harus dilakukan jika diamond tidak masuk ke akun game?</h3>
+            <i class="fas fa-chevron-down faq-icon text-indigo-600 dark:text-indigo-400"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-gray-600 pb-4 dark:text-gray-300">Pertama, pastikan ID game dan server yang dimasukkan sudah benar. Jika sudah benar, silakan hubungi customer service dengan menyertakan bukti pembayaran dan ID transaksi. Tim kami akan memproses keluhan Anda dalam waktu 1x24 jam.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') toggleFaq(this)">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">Bagaimana cara mengetahui ID transaksi?</h3>
+            <i class="fas fa-chevron-down faq-icon text-indigo-600 dark:text-indigo-400"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-gray-600 pb-4 dark:text-gray-300">ID transaksi akan dikirimkan ke email Anda setelah pembayaran berhasil. Anda juga dapat melihatnya di halaman riwayat transaksi pada akun DepsStore Anda. ID transaksi biasanya dimulai dengan "TRX-" diikuti oleh angka.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') toggleFaq(this)">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">Apakah DepsStore menjamin keamanan data pribadi saya?</h3>
+            <i class="fas fa-chevron-down faq-icon text-indigo-600 dark:text-indigo-400"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-gray-600 pb-4 dark:text-gray-300">Ya, DepsStore sangat menjaga keamanan dan privasi data pelanggan. Semua data pribadi dan transaksi dienkripsi dengan teknologi terkini. Kami tidak akan membagikan data Anda kepada pihak ketiga tanpa izin.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key === 'Enter' || event.key === ' ') toggleFaq(this)">
+            <h3 class="font-medium text-gray-900 dark:text-gray-100">Apakah ada biaya tambahan untuk transaksi di DepsStore?</h3>
+            <i class="fas fa-chevron-down faq-icon text-indigo-600 dark:text-indigo-400"></i>
+          </div>
+          <div class="faq-answer">
+            <p class="text-gray-600 pb-4 dark:text-gray-300">Tidak, harga yang tertera di DepsStore adalah harga final. Tidak ada biaya tambahan atau biaya administrasi apapun. Namun, beberapa metode pembayaran mungkin mengenakan biaya sesuai kebijakan penyedia pembayaran tersebut.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white rounded-xl p-6 shadow-md dark:bg-gray-800">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center dark:text-gray-100">
+        <i class="fas fa-envelope text-indigo-600 mr-3 dark:text-indigo-400"></i> Hubungi Kami
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Informasi Kontak</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4 dark:bg-indigo-900">
+                <i class="fas fa-envelope text-indigo-600 dark:text-indigo-400"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">Email</h4>
+                <p class="text-gray-600 dark:text-gray-300">support@depsstore.com</p>
+                <p class="text-base text-gray-500 dark:text-gray-400">Gmail dummy</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4 dark:bg-indigo-900">
+                <i class="fas fa-phone text-indigo-600 dark:text-indigo-400"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">Telepon</h4>
+                <p class="text-gray-600 dark:text-gray-300">+628123456789</p>
+                <p class="text-base text-gray-500 dark:text-gray-400">Telepon dummy</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4 dark:bg-indigo-900">
+                <i class="fab fa-whatsapp text-indigo-600 dark:text-indigo-400"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">WhatsApp</h4>
+                <p class="text-gray-600 dark:text-gray-300">+628123456789</p>
+                <p class="text-base text-gray-500 dark:text-gray-400">WhatsApp dummy</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4 dark:bg-indigo-900">
+                <i class="fab fa-telegram text-indigo-600 dark:text-indigo-400"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-gray-100">Telegram</h4>
+                <p class="text-gray-600 dark:text-gray-300">@depsstore_support</p>
+                <p class="text-base text-gray-500 dark:text-gray-400">Tele dummy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4 dark:text-gray-100">Kirim Pesan</h3>
+          
+          <form class="space-y-4" id="contact-form">
+            <input type="hidden" name="_csrf_token" value="YOUR_CSRF_TOKEN">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Nama Lengkap</label>
+              <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 contact-input dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100" placeholder="Masukkan nama lengkap" required>
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Email</label>
+              <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 contact-input dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100" placeholder="Masukkan alamat email" required>
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Subjek</label>
+              <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 contact-input dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100" aria-label="Pilih subjek pertanyaan" required>
+                <option value="">Pilih subjek</option>
+                <option value="payment">Masalah Pembayaran</option>
+                <option value="diamond">Diamond Tidak Masuk</option>
+                <option value="account">Masalah Akun</option>
+                <option value="other">Lainnya</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Pesan</label>
+              <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 contact-input dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100" placeholder="Tulis pesan Anda di sini" required></textarea>
+            </div>
+            
+            <button type="submit" class="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition">Kirim Pesan</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-10 mt-12 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <!-- Brand + Newsletter -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="brand-logo">
+              <img src="clients/assets/src/img/brand.png" alt="Logo DepsStore" class="h-10 w-10 object-contain" loading="lazy">
+            </div>
+            <h2 class="text-xl font-bold text-white dark:text-gray-100">Deps<span class="text-indigo-400">Store</span></h2>
+          </div>
+          <p class="mb-4 text-base dark:text-gray-300">Platform top up game terpercaya dengan proses cepat dan aman.</p>
+          <form class="flex gap-2">
+            <input type="email" placeholder="Masukkan email Anda" class="px-4 py-2 rounded bg-gray-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 w-full dark:bg-gray-700 dark:text-gray-100">
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600">Berlangganan</button>
+          </form>
+        </div>
+
+        <!-- Layanan -->
+        <div>
+          <h3 class="text-white font-semibold mb-4 dark:text-gray-100">Layanan</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-coins"></i> Top Up Game</a></li>
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-ticket-alt"></i> Voucher Game</a></li>
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-gift"></i> Item Game</a></li>
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-user"></i> Akun Game</a></li>
+          </ul>
+        </div>
+
+        <!-- Perusahaan -->
+        <div>
+          <h3 class="text-white font-semibold mb-4 dark:text-gray-100">Perusahaan</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-building"></i> Tentang Kami</a></li>
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-briefcase"></i> Karir</a></li>
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="#" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-handshake"></i> Mitra</a></li>
+          </ul>
+        </div>
+
+        <!-- Bantuan -->
+        <div>
+          <h3 class="text-white font-semibold mb-4 dark:text-gray-100">Bantuan</h3>
+          <ul class="space-y-2">
+            <li><a href="#help-center" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-life-ring"></i> Pusat Bantuan</a></li>
+            <li><a href="#payment-guide" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-credit-card"></i> Cara Pembayaran</a></li>
+            <li><a href="#faq" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-question-circle"></i> FAQ</a></li>
+            <li><a href="#contact" class="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-gray-100 transition"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-6 border-t border-gray-800 text-center text-sm dark:border-gray-600">
+        <p class="dark:text-gray-300">&copy; <span id="current-year"></span> DepsStore. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Initialize components on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      initHeader();
+      initThemeToggle();
+      initFormValidation();
+    });
+
+    // Initialize header functionality
+    function initHeader() {
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          const isExpanded = mobileMenu.classList.toggle('active');
+          mobileMenuButton.setAttribute('aria-expanded', isExpanded);
+          mobileMenuButton.querySelector('i').className = isExpanded ? 'fas fa-times text-xl' : 'fas fa-bars text-xl';
+        });
+
+        // Add keyboard support
+        mobileMenuButton.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const isExpanded = mobileMenu.classList.toggle('active');
+            mobileMenuButton.setAttribute('aria-expanded', isExpanded);
+            mobileMenuButton.querySelector('i').className = isExpanded ? 'fas fa-times text-xl' : 'fas fa-bars text-xl';
+          }
+        });
+      }
+    }
+
+    // Initialize theme toggle functionality
+    function initThemeToggle() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+      
+      // Check for saved theme preference or respect OS preference
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      
+      // Set initial theme
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.checked = true;
+        if (themeToggleMobile) themeToggleMobile.checked = true;
+      }
+      
+      // Add event listeners to both toggles
+      if (themeToggle) {
+        themeToggle.addEventListener('change', toggleTheme);
+      }
+      
+      if (themeToggleMobile) {
+        themeToggleMobile.addEventListener('change', function() {
+          if (themeToggle) themeToggle.checked = this.checked;
+          toggleTheme();
+        });
+      }
+    }
+    
+    // Toggle theme function
+    function toggleTheme() {
+      const isDarkMode = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // Form validation
+    function initFormValidation() {
+      const form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const subject = document.getElementById('subject').value;
+          const message = document.getElementById('message').value;
+
+          if (!name || !email || !subject || !message) {
+            e.preventDefault();
+            alert('Harap isi semua kolom!');
+          }
+        });
+      }
+    }
+
+    // Toggle FAQ accordion
+    function toggleFaq(element) {
+      const allAnswers = document.querySelectorAll('.faq-answer');
+      const allIcons = document.querySelectorAll('.faq-icon');
+      
+      allAnswers.forEach(answer => answer.classList.remove('active'));
+      allIcons.forEach(icon => icon.classList.remove('active'));
+      
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('.faq-icon');
+      
+      answer.classList.add('active');
+      icon.classList.add('active');
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

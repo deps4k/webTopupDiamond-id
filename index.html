@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DepsStore - Top Up Diamond Game Terpercaya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="clients/assets/src/js/main.js"></script>
+  <link rel="stylesheet" href="clients/assets/src/css/style.css" type="text/css" media="all" />
+  <style>
+  </style>
+</head>
+<body class="bg-gray-50 font-poppins">
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="brand-logo">
+          <img src="clients/assets/src/img/brand.png" alt="brand" class="h-10 w-10 object-contain">
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900">
+          Deps<span class="text-indigo-600">Store</span>
+        </h1>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#dashboard" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium">
+          <i class="fas fa-tachometer-alt"></i> Beranda
+        </a>
+        <a href="#game-section" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium">
+          <i class="fas fa-gamepad"></i> Game
+        </a>
+        <a href="history.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium">
+          <i class="fas fa-history"></i> Riwayat
+        </a>
+        <a href="help.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium">
+          <i class="fas fa-question-circle"></i> Bantuan
+        </a>
+        
+        <!-- Theme Toggle -->
+        <div class="flex items-center gap-2">
+          <label class="theme-toggle">
+            <input type="checkbox" id="theme-toggle">
+            <span class="theme-slider">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+            </span>
+          </label>
+        </div>
+        
+        <button onclick="window.location.href='clients/accounts/index.html'" 
+          class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium">
+          <i class="fas fa-user"></i> Masuk
+        </button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center gap-4 md:hidden">
+        <!-- Theme Toggle for Mobile -->
+        <label class="theme-toggle">
+          <input type="checkbox" id="theme-toggle-mobile">
+          <span class="theme-slider">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+          </span>
+        </label>
+        
+        <button id="mobileMenuButton" class="text-gray-700" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden:md mobile-menu bg-white px-4 pb-4">
+      <div class="flex flex-col gap-4">
+        <a href="#dashboard" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium py-2">
+          <i class="fas fa-tachometer-alt"></i> Beranda
+        </a>
+        <a href="#game-section" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium py-2">
+          <i class="fas fa-gamepad"></i> Game
+        </a>
+        <a href="history.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium py-2">
+          <i class="fas fa-history"></i> Riwayat
+        </a>
+        <a href="help.html" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 font-medium py-2">
+          <i class="fas fa-question-circle"></i> Bantuan
+        </a>
+        <button onclick="window.location.href='clients/accounts/index.html'" 
+          class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium">
+          <i class="fas fa-user"></i> Masuk
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="dashboard" class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Promo Banner -->
+    <div class="max-w-7xl mx-auto px-4 mb-14 mt-8">
+      <div class="bg-gradient-to-r from-indigo-600 to-indigo-500 rounded-2xl p-6 shadow-lg">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="text-white mb-4 md:mb-0">
+            <h3 class="text-xl font-bold mb-1">🎉 Promo Spesial Akhir Tahun!</h3>
+            <p class="max-w-md">Dapatkan cashback hingga 20% untuk semua top up game. Berlaku hingga 31 Desember.</p>
+          </div>
+          <button id="claim-promo" class="px-5 py-2.5 bg-white text-indigo-600 font-medium rounded-full shadow hover:bg-gray-100 transition flex items-center pulse">
+            <i class="fas fa-gift mr-2"></i> Klaim Sekarang
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Selection Section -->
+    <section id="game-section" class="dynamic-section visible">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Pilih Game Favoritmu</h2>
+      <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
+        <!-- Mobile Legends -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Mobile Legends', 'mlbb')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/mlbb.jpeg" alt="Mobile Legends" class="w-full rounded-lg object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Mobile Legends</h3>
+          </div>
+        </div>
+        
+        <!-- Free Fire -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Free Fire', 'ff')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/ff.jpeg" alt="Free Fire" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Free Fire</h3>
+          </div>
+        </div>
+         
+        <!-- PUBG Mobile -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'PUBG Mobile', 'pubg')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/pubg.jpeg" alt="PUBG Mobile" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">PUBG Mobile</h3>
+          </div>
+        </div>
+        
+        <!-- Genshin Impact -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Genshin Impact', 'genshin')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/genshin.jpeg" alt="Genshin Impact" class="w-full rounded-lg object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Genshin Impact</h3>
+          </div>
+        </div>
+        
+        <!-- Valorant -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Valorant', 'valorant')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/valo.jpeg" alt="Valorant" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Valorant</h3>
+          </div>
+        </div>
+        
+        <!-- Call of Duty -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Call of Duty', 'cod')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/cod.jpeg" alt="Call of Duty" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Call of Duty</h3>
+          </div>
+        </div>
+        
+        <!-- Clash of Clans -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Clash of Clans', 'coc')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/coc.jpeg" alt="Clash of Clans" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Clash of Clans</h3>
+          </div>
+        </div>
+        
+        <!-- Delta Force -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Delta Force', 'delta')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/delta.jpeg" alt="Delta Force" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Delta Force</h3>
+          </div>
+        </div>
+        
+        <!-- Minecraft -->
+        <div class="game-card bg-white rounded-xl p-4 shadow-md border-2 border-transparent cursor-pointer" onclick="selectGame(this, 'Minecraft', 'mc')">
+          <div class="flex flex-col items-center">
+            <img src="clients/assets/src/img/gameIcon/mc.jpeg" alt="Minecraft" class="w-full rounded-lg  object-contain mb-3">
+            <h3 class="font-medium text-gray-900 text-center">Minecraft</h3>
+        </div>
+        </div>
+      </div>
+      
+      <div class="mt-10 flex justify-center">
+        <button id="next-to-account" class="px-8 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Lanjutkan <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Account Information Section -->
+    <section id="account-section" class="dynamic-section max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Data Akun Game</h2>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="mb-6">
+          <label class="block text-gray-700 font-medium mb-2">Game yang Dipilih</label>
+          <input type="text" id="selected-game" class="w-full px-4 py-2.5 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600" value="- Pilih Game -" readonly>
+        </div>
+        
+        <div class="mb-6">
+          <label for="game-id" class="block text-gray-700 font-medium mb-2">
+            <span id="id-label">ID Game</span>
+            <span class="game-id-info" id="id-info">(Masukkan ID Game Anda)</span>
+          </label>
+          <input type="text" id="game-id" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600" placeholder="Masukkan ID Game Anda">
+        </div>
+        
+        <div class="mb-6">
+          <label for="game-nickname" class="block text-gray-700 font-medium mb-2">Nickname</label>
+          <input type="text" id="game-nickname" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600" placeholder="Masukkan Nickname Game">
+        </div>
+        
+        <div class="mb-8">
+          <label for="game-server" class="block text-gray-700 font-medium mb-2">
+            <span id="server-label">Server</span>
+            <span class="game-id-info" id="server-info">(Masukkan Server Game)</span>
+          </label>
+          <input type="text" id="game-server" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600" placeholder="Masukkan Server Game">
+        </div>
+        
+        <div class="flex justify-between">
+          <button id="back-to-game" class="px-6 py-2.5 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition">
+            <i class="fas fa-arrow-left mr-2"></i> Kembali
+          </button>
+          <button id="next-to-diamond" class=" px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition">
+            Lanjutkan <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diamond Selection Section -->
+    <section id="diamond-section" class="dynamic-section">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Pilih Jumlah Diamond</h2>
+      <div class="mb-6">
+        <label class="block text-gray-700 font-medium mb-2">Game yang Dipilih</label>
+        <input type="text" id="selected-game-diamond" class="w-full max-w-xs mx-auto px-4 py-2.5 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 text-center" value="- Pilih Game -" readonly>
+      </div>
+      
+      <div id="diamond-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 mb-10">
+        <!-- Diamond packages will be generated here -->
+      </div>
+      
+      <div class="bg-white rounded-xl p-6 shadow-md max-w-2xl mx-auto mb-10">
+        <h3 class="font-semibold text-gray-900 mb-4">Ringkasan Pembelian</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-gray-600">Jumlah Diamond</p>
+            <p class="font-medium" id="selected-diamond">0 Diamond</p>
+          </div>
+          <div>
+            <p class="text-gray-600">Harga</p>
+            <p class="font-medium" id="selected-price">Rp 0</p>
+          </div>
+          <div>
+            <p class="text-gray-600">Cashback</p>
+            <p class="font-medium text-green-600" id="cashback-amount">Rp 0</p>
+          </div>
+          <div>
+            <p class="text-gray-600">Total Harga</p>
+            <p class="font-medium text-indigo-600" id="total-price">Rp 0</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex justify-between max-w-2xl mx-auto">
+        <button id="back-to-account" class="px-6 py-2.5 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition">
+          <i class="fas fa-arrow-left mr-2"></i> Kembali
+        </button>
+        <button id="next-to-payment" class="px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Lanjutkan <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment-section" class="dynamic-section max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Metode Pembayaran</h2>
+      
+      <div class="bg-white rounded-xl p-6 shadow-md mb-8">
+        <h3 class="font-semibold text-gray-900 mb-4">Ringkasan Pembelian</h3>
+        <div class="space-y-3 mb-6">
+          <div class="flex justify-between">
+            <span class="text-gray-600">Game</span>
+            <span class="font-medium" id="summary-game">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">ID Game</span>
+            <span class="font-medium" id="summary-id">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Nickname</span>
+            <span class="font-medium" id="summary-nickname">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Server</span>
+            <span class="font-medium" id="summary-server">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">Jumlah Diamond</span>
+            <span class="font-medium" id="summary-diamond">-</span>
+          </div>
+          <div class="flex justify-between border-t border-gray-200 pt-3 mt-3">
+            <span class="text-gray-600">Total Pembayaran</span>
+            <span class="font-bold text-indigo-600" id="summary-total">Rp 0</span>
+          </div>
+        </div>
+        
+        <h3 class="font-semibold text-gray-900 mb-4">Pilih Metode Pembayaran</h3>
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="payment-method bg-white border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" onclick="selectPayment(this, 'QRIS')">
+            <img src="clients/assets/src/img/paymentIcon/qris.png" alt="QRIS" class="h-10 mx-auto mb-2 object-contain">
+            <p class="text-sm font-medium">QRIS</p>
+          </div>
+          <div class="payment-method bg-white border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" onclick="selectPayment(this, 'Gopay')">
+            <img src="clients/assets/src/img/paymentIcon/gopay.png" alt="Gopay" class="h-10 mx-auto mb-2 object-contain">
+            <p class="text-sm font-medium">Gopay</p>
+          </div>
+          <div class="payment-method bg-white border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" onclick="selectPayment(this, 'OVO')">
+            <img src="clients/assets/src/img/paymentIcon/ovo.png" alt="OVO" class="h-10 mx-auto mb-2 object-contain">
+            <p class="text-sm font-medium">OVO</p>
+          </div>
+          <div class="payment-method bg-white border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" onclick="selectPayment(this, 'Dana')">
+            <img src="clients/assets/src/img/paymentIcon/dana.jpeg" alt="Dana" class="h-10 mx-auto mb-2 object-contain">
+            <p class="text-sm font-medium">Dana</p>
+          </div>
+          <div class="payment-method bg-white border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" onclick="selectPayment(this, 'ShopeePay')">
+            <img src="clients/assets/src/img/paymentIcon/shopeepay.png" alt="ShopeePay" class="h-10 mx-auto mb-2 object-contain">
+            <p class="text-sm font-medium">ShopeePay</p>
+          </div>
+          <div class="payment-method bg-white border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer" onclick="selectPayment(this, 'Bank Transfer')">
+            <img src="clients/assets/src/img/paymentIcon/bank.png" alt="Bank Transfer" class="h-10 mx-auto mb-2 object-contain">
+            <p class="text-sm font-medium">Bank Transfer</p>
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <label class="block text-gray-700 font-medium mb-2">Metode Pembayaran Terpilih</label>
+          <input type="text" id="selected-payment" class="w-full px-4 py-2.5 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600" value="- Pilih Metode -" readonly>
+        </div>
+        
+        <div class="flex justify-between">
+          <button id="back-to-diamond" class="px-6 py-2.5 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition">
+            <i class="fas fa-arrow-left mr-2"></i> Kembali
+          </button>
+          <button id="confirm-purchase" class="px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            Konfirmasi Pembayaran
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+<footer class="bg-[#1e1e1e] text-gray-400 py-10">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      
+      <!-- Brand + Deskripsi -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="brand-logo">
+            <img src="clients/assets/src/img/brand.png" alt="brand" class="h-10 w-10 object-contain">
+          </div>
+          <h2 class="text-xl font-bold text-white">Deps<span class="text-indigo-400">Store</span></h2>
+        </div>
+        <p class="mb-4 text-sm">Platform top up game terpercaya dengan proses cepat dan aman.</p>
+
+        <!-- Sosial Media -->
+        <div class="flex gap-3">
+          <a href="https://www.tiktok.com/@whycmgindo" target="_blank" 
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-500 text-white text-lg transition">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://www.instagram.com/@whycmgindo" target="_blank" 
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-500 text-white text-lg transition">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/@akg4k" target="_blank" 
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600 text-white text-lg transition">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://wa.me/6281573162969?text=Hallo!! apakah kita bisa bekerja sama? sebagai mitra pada umumnya.." target="_blank" 
+             class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-500 text-white text-lg transition">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+        <!-- Layanan -->
+        <div>
+          <h3 class="text-white font-semibold mb-4">Layanan</h3>
+          <ul class="space-y-2">
+            <li><a href="#game-section" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-coins"></i> Top Up Game</a></li>
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-ticket-alt"></i> Voucher Game</a></li>
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-gift"></i> Item Game</a></li>
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-user"></i> Akun Game</a></li>
+          </ul>
+        </div>
+
+        <!-- Perusahaan -->
+        <div>
+          <h3 class="text-white font-semibold mb-4">Perusahaan</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-building"></i> Tentang Kami</a></li>
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-briefcase"></i> Karir</a></li>
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="#" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-handshake"></i> Mitra</a></li>
+          </ul>
+        </div>
+
+        <!-- Bantuan -->
+        <div>
+          <h3 id="bantuan" class="text-white font-semibold mb-4">Bantuan</h3>
+          <ul class="space-y-2">
+            <li><a href="help.html#help-center" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-life-ring"></i> Pusat Bantuan</a></li>
+            <li><a href="help.html#payment-guide" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-credit-card"></i> Cara Pembayaran</a></li>
+            <li><a href="help.html#faq" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-question-circle"></i> FAQ</a></li>
+            <li><a href="help.html#contact" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-6 border-t border-gray-800 text-center text-sm">
+        <p>&copy; <span id="current-year"></span> DepsStore. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-6 m-4 max-w-md w-full">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-check text-green-600 text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Pembayaran Berhasil!</h3>
+        <p class="text-gray-600">Pembelian diamond Anda sedang diproses</p>
+      </div>
+      
+      <div class="bg-gray-50 rounded-lg p-4 mb-6">
+        <div id="success-details" class="text-sm space-y-2">
+          <!-- Transaction details will be inserted here -->
+        </div>
+      </div>
+      
+      <p class="text-center text-gray-500 text-sm mb-6">Diamond akan masuk ke akun game Anda dalam waktu maksimal 15 menit. Jika mengalami kendala, hubungi Customer Service.</p>
+      
+      <button id="success-close" class="w-full py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+</body>
+</html>
